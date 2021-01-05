@@ -1,2 +1,9 @@
 # SchoolProject-08-12-2021
-Exercises for final year exam. Simple authentification  with express and for frontend using just javascript vanilla css and html.(I would have used  react but I don't think it's allowed)
+Exercise for final year exam.
+
+For this project I'm using :
+-express as a backend.
+-javascript with no adittional frameworks for frontend  
+-Css and html
+
+( more sofisticated frameworks could have been used )
