@@ -1,0 +1,29 @@
+{
+  "name": "schoolproject-08-12-2021",
+  "version": "1.0.0",
+  "description": "Exercise for final year exam.",
+  "main": "app.js",
+  "scripts": {
+    "devStart": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marian-hub/SchoolProject-08-12-2021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marian-hub/SchoolProject-08-12-2021/issues"
+  },
+  "homepage": "https://github.com/Marian-hub/SchoolProject-08-12-2021#readme",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.10",
+    "nodemon": "^2.0.6"
+  }
+}
