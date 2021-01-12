@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
-const { Schema } = require('mongoose')
-
-const ticketSchema = new Schema({
+const User = require('./User')
+const user = User.schema
+const ticketSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -16,11 +16,11 @@ const ticketSchema = new Schema({
         required: false
     },
     technicianCreator: {
-        type: String,//user.name
+        type: user,
         required: true
     },
     clientAssociated: {
-        type: String,//user.name
+        type: user,
         required: true
     },
     ticketState: {
@@ -34,15 +34,16 @@ const ticketSchema = new Schema({
         default: false
     },
     comments: {
-        user: {
-            type: String,//
+        type:Array,
+        userCommenting: {
+            type: user,//
             required: false
         },
         commentText: {
             type: String,
             required: false
         },
-        require:false
+        
     }
 })
 

@@ -5,14 +5,13 @@ const
 
 exports.register = (req, res) => {
     console.log(req.body)
-    const { name, password, role } = req.body
-    const userExists = User.findOne({ name: name }, (err, document) => {
+    const { name, role } = req.body
+    const userExists = User.findOne({ name: name, role: role }, (err, document) => {
         if (err) { console.log(err) }
         if (document === null) {
             try {
                 const user = new User({
                     name: name,
-                    password: password,
                     role: role
                 })
                 user.save()
@@ -30,12 +29,12 @@ exports.register = (req, res) => {
 }
 
 exports.login = (req, res) => {
-    const { name, password, role } = req.body
+    const { name, role } = req.body
     const userExists = User.findOne({ name: name }, (err, document) => {
         if (document === null) { return res.status(404).send("user NOT FOUND") }
         //need jwt sign in
-        jwt.sign({ name: name }, "secretKey", (err, token) => {
-            console.log('logged IN')
+        jwt.sign({ name: name, role: role }, "secretKey", (err, token) => {
+            console.log(token)
             res.cookie("token", token, { httpOnly: true })
             return res.status(200).send("YOU LOGGED IN")
         })
