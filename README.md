@@ -13,10 +13,6 @@ For this project I'm using.<br/>
 
 # Project Requests 
 ---------------------------------------------------------
-document link => https://gesco.bearzi.it/secure/scuola/didattica/registro-docente/compito-column/download/8468/21848/7cf5b53807d04bd351cd89b6eb681f0d.pdf<br/>
-
-
-
 
 # Api Routes
 ---------------------------------------------------------
