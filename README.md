@@ -16,14 +16,14 @@ For this project I'm using.<br/>
 
 # Api Routes
 ---------------------------------------------------------
-TICKET
+TICKET<br/>
 GET  "/getTicket" get the ticked with the specified title</br>
 GET  "/getAllTickets" get all the tickets of the user </br>
 POST "/createTicket" create a ticket if the role of the user is technician<br/>
 POST "/updateTicket" update ticketState and convalidatedByClient<br/>
 POST "/addComment" given the title of the ticket push comments <br/>
     
-AUTHENTIFICATION
+AUTHENTIFICATION<br/>
 POST "/login" login with a name and adds the jwt token as cookies<br/> 
 POST "/register" create a user with a name and a role<br/>
 
