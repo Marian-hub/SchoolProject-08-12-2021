@@ -15,5 +15,5 @@ exports.connectDB = mongoose.connect(process.env.DATABASE_URL,(err)=>{
     // user.save()
     
     console.log("SUCCESSFULLY CONNECTED TO DB")
-})
+},{'useFindAndModify':false})
 

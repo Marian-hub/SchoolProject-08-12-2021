@@ -8,7 +8,7 @@ const ticketSchema = new Schema({
     },
     timeStarted: {
         type: Date,
-        require: false,
+        require: true,
         default: Date
     },
     timeEnded: {
@@ -17,11 +17,11 @@ const ticketSchema = new Schema({
     },
     technicianCreator: {
         type: String,//user.name
-        required: false
+        required: true
     },
     clientAssociated: {
         type: String,//user.name
-        required: false
+        required: true
     },
     ticketState: {
         type: Boolean,
@@ -35,7 +35,7 @@ const ticketSchema = new Schema({
     },
     comments: {
         user: {
-            type: String,//client.comment
+            type: String,//
             required: false
         },
         commentText: {
