@@ -49,7 +49,7 @@ const updateTicket = (req, res) => {
     }
 }
 const getTicket = (req, res) => {
-    const { title } = req.params
+    const { title } = req.body
     Ticket.findOne({ title: title }, (err, doc) => {
         if (err) return res.status(404).send("There is no  ticket with that title")
         res.status(200).send(doc)
