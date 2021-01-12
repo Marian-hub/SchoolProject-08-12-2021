@@ -57,17 +57,7 @@ const getTicket = (req, res) => {
 }
 const getAllTickets = (req, res) => {
     const user = getUserByToken(req, res)
-    if (user.role === "technician") {
-        Ticket.find({ technicalCreator: user }, (err, documents) => {
-            if (err) return res.status(500).send("COULD NOT RETRIVE DATA")
-            res.status(200).send(documents)
-        })
-    } else if (user.role === "client") {
-        Ticket.find({ technicalCreator: user }, (err, documents) => {
-            if (err) return res.status(500).send("COULD NOT RETRIVE DATA")
-            res.status(200).send(documents)
-        })
-    } else if (user.role === 'manager') {
+    if(typeof user !=='undefined'){
         Ticket.find({ technicalCreator: user }, (err, documents) => {
             if (err) return res.status(500).send("COULD NOT RETRIVE DATA")
             res.status(200).send(documents)
