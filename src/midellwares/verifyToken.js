@@ -9,10 +9,6 @@ const verifyToken =  (req,res,next)=>{
         next()
     })
 }
-const generateToken = (name)=>{
-
-}
 module.exports = {
-    verifyToken,
-    generateToken
+    verifyToken
 }

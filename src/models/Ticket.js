@@ -1,33 +1,31 @@
+const mongoose = require('mongoose')
 const { Schema } = require('mongoose')
-const User = require('./User')
 
 const ticketSchema = new Schema({
     title: {
         type: String,
         required: true,
     },
-    timeSpent: {
-        timeStarted: {
-            type: Date.now(),
-            require: true,
-            default:Date.now()
-        },
-        timeEndend: {
-            type: Date,
-            required: false
-        }
+    timeStarted: {
+        type: Date,
+        require: false,
+        default: Date
+    },
+    timeEnded: {
+        type: Date,
+        required: false
     },
     technicianCreator: {
-        type: User,
-        required: true
+        type: String,//user.name
+        required: false
     },
     clientAssociated: {
-        type: User,
-        required: true
+        type: String,//user.name
+        required: false
     },
     ticketState: {
         type: Boolean,
-        required: true,
+        required: false,
         default: false
     },
     covalidatedByClient: {
@@ -37,13 +35,14 @@ const ticketSchema = new Schema({
     },
     comments: {
         user: {
-            type: User,
-            required: true
+            type: String,//client.comment
+            required: false
         },
         commentText: {
             type: String,
-            required: true
-        }
+            required: false
+        },
+        require:false
     }
 })
 

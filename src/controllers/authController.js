@@ -1,5 +1,6 @@
 const
     User = require('../models/User'),
+    cookieParser = require('cookie-parser'),
     jwt = require('jsonwebtoken');
 
 exports.register = (req, res) => {
@@ -35,8 +36,8 @@ exports.login = (req, res) => {
         //need jwt sign in
         jwt.sign({ name: name }, "secretKey", (err, token) => {
             console.log('logged IN')
-            return res.json(token)
+            res.cookie("token", token, { httpOnly: true })
+            return res.status(200).send("YOU LOGGED IN")
         })
     })
-
 }

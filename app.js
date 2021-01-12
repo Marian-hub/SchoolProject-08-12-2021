@@ -1,10 +1,11 @@
-
 const
     express = require('express'),
     routes = require('./src/routes/index'),
+    cookieParser  = require('cookie-parser'),
     app = express();
 
-app.use(express.json())
 require('./src/db/connection').connectDB
+app.use(express.json())
+app.use(cookieParser())
 app.use(routes)
 app.listen(3000||process.env.PORT,(err)=>{err})
