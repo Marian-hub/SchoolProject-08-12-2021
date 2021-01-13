@@ -29,12 +29,14 @@ exports.register = (req, res) => {
 }
 
 exports.login = (req, res) => {
+    console.log("tryingto login")
     const { name, role } = req.body
     const userExists = User.findOne({ name: name }, (err, document) => {
         if (document === null) { return res.status(404).send("user NOT FOUND") }
         //need jwt sign in
         jwt.sign({ name: name, role: role }, "secretKey", (err, token) => {
             console.log(token)
+            res.cookie('jwtToken',token,{httpOnly:true})
             res.cookie("token", token, { httpOnly: true })
             return res.status(200).send("YOU LOGGED IN")
         })

@@ -8,4 +8,4 @@ require('./src/db/connection').connectDB
 app.use(express.json())
 app.use(cookieParser())
 app.use(routes)
-app.listen(3000||process.env.PORT,(err)=>{err})
+app.listen(4000||process.env.PORT,(err)=>{err})
