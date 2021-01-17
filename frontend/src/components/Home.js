@@ -6,7 +6,7 @@ class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            ticketData: ' ',
+            ticketData: [],
             loggedIn: false
         }
     }
@@ -22,28 +22,40 @@ class Home extends Component {
             }
         }).then(response => {
             this.setState({
-                ticketData: response,
-                loggedIn:true
+                ticketData: response.data,
+                loggedIn: true
             })
-            console.log(response)
+            // console.log(response)
         }).catch(err => {
-            if(err){return err}
+            if (err) { return err }
         })
     }
 
-    renderTicketData =  () => {
+    renderTicketData = () => {
+        const { ticketData } = this.state
+        console.log(ticketData)
+        ticketData.data.map(ticket => (
+            <div>
+                ticket.title
+            </div>
+        ))
+        return ticketData.data[0].title
     }
 
     render() {
-        const {ticketData,loggedIn} = this.state
-        if (loggedIn){
-            return(
+        const { ticketData, loggedIn } = this.state
+        if (loggedIn) {
+            return (
                 <div>
-                    YOU ARE LOGGED IN
+                    {this.state.ticketData.map((ticket, index) => (
+                        <div>
+                            <p>TITLE: {ticket.title}</p>
+                        </div>
+                    ))}
                 </div>
             )
-        }else{
-            return(
+        } else {
+            return (
                 <div>
                     LOG IN PLEASE
                 </div>
