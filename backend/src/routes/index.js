@@ -1,5 +1,6 @@
 // this file is used just becouse a I want to be able to import 
 // all the routes in the main file (app.js) more easly and to 
+
 // create a more readable code 
 const
     router = require('express').Router(),
@@ -8,5 +9,8 @@ const
 
 router.use(authRouter)
 router.use(ticketRouter)
-
+router.get('/diocane',(req,res)=>{
+    res.cookie('diocane','dioporco')
+    res.send("DIOCANE")
+})
 module.exports = router

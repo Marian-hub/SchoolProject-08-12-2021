@@ -3,10 +3,14 @@ const
     jwt = require('jsonwebtoken');
 
 const getUserByToken = (req, res) => {
-    const usertoken = req.cookies.jwtToken;
-    const token = usertoken.split(' ');
-    const user = jwt.verify(token[1], 'secretKey');
-    return user
+    const usertoken = req.header('authorization')
+    if (typeof usertoken === 'undefined') {
+        return res.status(403).send("FORBIDDEN")
+    }else{
+        const token = usertoken.split(' ')[1];
+        const user = jwt.verify(token, 'secretKey');
+        return user
+    }
 }
 const createTicket = (req, res) => {
     const user = getUserByToken(req, res)
@@ -48,6 +52,7 @@ const updateTicket = (req, res) => {
         return res.status(500).send("no state to be cahnged given")
     }
 }
+
 const getTicket = (req, res) => {
     const { title } = req.body
     Ticket.findOne({ title: title }, (err, doc) => {
@@ -56,14 +61,13 @@ const getTicket = (req, res) => {
     })
 }
 const getAllTickets = (req, res) => {
-    // const user = getUserByToken(req, res)
-    // if(typeof user !=='undefined'){
-    //     Ticket.find({ technicalCreator: user }, (err, documents) => {
-    //         if (err) return res.status(500).send("COULD NOT RETRIVE DATA")
-    //         res.status(200).send(documents)
-    //     })
-    // }
-    res.send("HI I M A GOOD PERSON")
+    const user = getUserByToken(req, res)
+    if (typeof user !== 'undefined') {
+        Ticket.find({}, (err, documents) => {
+            if (err) return res.status(500).send("COULD NOT RETRIVE DATA")
+            res.status(200).send(documents)
+        })
+    }
 }
 const addComment = (req, res) => {
     const user = getUserByToken(req, res)
@@ -72,7 +76,7 @@ const addComment = (req, res) => {
         userCommenting: user,
         textContent: textContent
     }
-    Ticket.findOneAndUpdate({ title: title }, { $push: /*i like mongo*/{ comments: userComment } }, (err, doc) => {
+    Ticket.findOneAndUpdate({ title: title }, { $push:{ comments: userComment } }, (err, doc) => {
         if (err) return res.status(500).send("error in finding the ticket")
         res.status(200).send(doc)
     })

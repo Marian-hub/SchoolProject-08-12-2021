@@ -10,7 +10,7 @@ const
     { verifyToken } = require('../midellwares/verifyToken');
 
 router.get('/getTicket', verifyToken, getTicket)
-router.get('/getAllTickets', getAllTickets)
+router.get('/getAllTickets', verifyToken, getAllTickets)
 router.post('/createTicket', verifyToken, createTicket)
 router.post('/updateTicket', verifyToken, updateTicket)
 router.post('/addComment', verifyToken, addComment)
