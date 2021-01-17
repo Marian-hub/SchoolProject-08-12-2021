@@ -18,7 +18,7 @@ const register = (req, res) => {
                 res.status(500).send("User COULD NOT be created")
             }
         } else if (document !== null) {
-            return res.status(401).send("User ALREADY exists")
+            return res.status(401).send({message:"User ALREADY exists"})
         }
     })
 
@@ -29,12 +29,10 @@ const register = (req, res) => {
 const login = (req, res) => {
     console.log("tryingto login")
     const { name, role } = req.body
-    console.log(req.body)
     const userExists = User.findOne({ name: name }, (err, document) => {
-        if (document === null) { return res.status(404).send("user NOT FOUND") }
-        //need jwt sign in
+        if (err) { return res.status(404).send("user NOT FOUND") }
         jwt.sign({ name: name, role: role }, "secretKey", (err, token) => {
-            res.cookie('token',token,{httpOnly:false}).send()
+            res.cookie('token', token, { httpOnly: false }).send()
         })
     })
 }
