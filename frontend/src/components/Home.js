@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 class Home extends Component {
@@ -13,14 +14,14 @@ class Home extends Component {
     }
 
     getAllTicketData = async () => {
-        const token = 'Beare '+Cookies.get('token')
+        const token = 'Beare ' + Cookies.get('token')
         const ticketData = await axios.get("http://localhost:4000/getAllTickets", {
-           headers:{
-            authorization:token
-           }
+            headers: {
+                authorization: token
+            }
         }).then(response => {
             this.setState({
-                ticketData: response
+                ticketData: response,
             })
             console.log(response)
         })
@@ -33,6 +34,7 @@ class Home extends Component {
     render() {
         return (
             <div>
+
             </div>
         )
     }

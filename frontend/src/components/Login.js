@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: " "
+            name: " ",
+            redirect: false
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -19,27 +21,38 @@ class Login extends Component {
         event.preventDefault()
         const loginRequest = axios.post(
             "http://localhost:4000/login",
-            { "name": "marian" },
+            { "name": this.state.name },
             { withCredentials: true }
-        )
+        ).then(() => {
+            this.setState({
+                redirect: true
+            })
+        })
     }
     render() {
-        return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input
-                        type="text"
-                        value={this.state.name}
-                        onChange={this.handleChange}
-                    ></input>
-                    <input
-                        type="submit"
-                        value="submit"
-                    ></input>
-                </form>
+        const { redirect } = this.state
+        if (redirect) {
+            return (
+                <Redirect to="/home"/>
+            )
+        } else {
+            return (
+                <div>
+                    <form onSubmit={this.handleSubmit}>
+                        <input
+                            type="text"
+                            value={this.state.name}
+                            onChange={this.handleChange}
+                        ></input>
+                        <input
+                            type="submit"
+                            value="submit"
+                        ></input>
+                    </form>
 
-            </div>
-        )
+                </div>
+            )
+        }
     }
 }
 export default Login
