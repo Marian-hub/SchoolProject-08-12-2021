@@ -6,7 +6,8 @@ class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            ticketData: ' '
+            ticketData: ' ',
+            loggedIn: false
         }
     }
     async componentDidMount() {
@@ -22,21 +23,32 @@ class Home extends Component {
         }).then(response => {
             this.setState({
                 ticketData: response,
+                loggedIn:true
             })
             console.log(response)
+        }).catch(err => {
+            if(err){return err}
         })
     }
 
-    renderTicketData = async () => {
-
+    renderTicketData =  () => {
     }
 
     render() {
-        return (
-            <div>
-
-            </div>
-        )
+        const {ticketData,loggedIn} = this.state
+        if (loggedIn){
+            return(
+                <div>
+                    YOU ARE LOGGED IN
+                </div>
+            )
+        }else{
+            return(
+                <div>
+                    LOG IN PLEASE
+                </div>
+            )
+        }
     }
 }
 export default Home
