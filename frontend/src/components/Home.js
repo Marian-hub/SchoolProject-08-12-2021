@@ -14,7 +14,7 @@ class Home extends Component {
     }
 
     getAllTicketData = async () => {
-        const token = 'Beare ' + Cookies.get('token')
+        const token = 'Bearer ' + Cookies.get('token')
         const ticketData = await axios.get("http://localhost:4000/getAllTickets", {
             headers: {
                 authorization: token
